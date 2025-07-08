@@ -9,10 +9,12 @@ const register = async (req, res) => {
     const { name, email, password, role } = req.body;
     const hashedpwd = await bcrypt.hash(password, 10);
     const user = {
-      name,
+      firstname,
+      lastname,
       email,
       password: hashedpwd,
       role,
+      status: "active",
     };
     const result = await userModel.create(user);
     res.status(201).json(result);
@@ -63,9 +65,11 @@ const login = async (req, res) => {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         const userObj = {
-          name: user.name,
+          firstname: user.firstname,
+          lastname: user.lastname,
           email: user.email,
           role: user.role,
+          status: user.status,
         };
         const token = jwt.sign(userObj, SECRET, { expiresIn: "1h" });
         res.status(200).json({ userObj, token });
