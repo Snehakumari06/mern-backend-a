@@ -17,7 +17,8 @@ const dbpass = encodeURIComponent(process.env.DBPASS);
 //   });
 
   mongoose
-  .connect(`mongodb+srv://${dbuser}:${dbpass}@cluster0.qjxhv.mongodb.net/merndb?retryWrites=true&w=majority&appName=Cluster0`)
+  .connect(`mongodb+srv://${dbuser}:${dbpass}@sneha.tbgpj9n.mongodb.net/merndb?retryWrites=true&w=majority&appName=Sneha`)
+  
   .then(() => {
     app.listen(8080, () => {
       console.log("Server started");
